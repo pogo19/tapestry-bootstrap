@@ -45,7 +45,7 @@
         <dependency>
             <groupId>org.got5</groupId>
             <artifactId>tapestry5-jquery</artifactId>
-            <version>3.3.3</version>
+            <version>3.3.5</version>
         </dependency>
 
         <!-- A dependency on either JUnit or TestNG is required, or the surefire plugin (which runs the tests)
@@ -301,13 +301,10 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
         </profile>        <profile>
         <id>windows-os-test</id>
         <activation>
-            <os>
-                <name>Windows XP</name>
-                <family>Windows</family>
-            </os>
+            <os> <family>Windows</family> </os>
         </activation>
         <properties>
-            <browserStartCommand>*googlechrome ${user.home}\Local Settings\Application Data\Google\Chrome\Application\chrome.exe</browserStartCommand>
+            <browserStartCommand>*googlechrome</browserStartCommand>
         </properties>
     </profile>
 	</profiles>
