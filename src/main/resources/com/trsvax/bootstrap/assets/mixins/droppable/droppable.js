@@ -6,14 +6,17 @@
             d.droppable(specs.params);
             d.data("drop-context", specs.context);
             d.bind("drop", function(event, ui) {
+                var thisCopy = this;
+                var draggable = $(ui.draggable);
                 var dropCtx = $(event.currentTarget).data("drop-context");
-                var dragCtx = $(ui.draggable).data("drag-context");
+                var dragCtx = draggable.data("drag-context");
                 var url = specs.BaseURL + dropCtx + dragCtx;
                 if ( specs.zoneSelector ) {
 	    			 var element = $(specs.zoneSelector);
 	    			 element.tapestryZone("update" , {url : url});
     			 } else {
-    				 $.get(url).success(
+    				 $.get(url)
+                         .success(
     							function(data) {
     								if (data.redirectURL) {
     					                // Check for complete URL.
@@ -22,7 +25,9 @@
     					                    return;
     					                }				                
     					                window.location.pathname = data.redirectURL;
-    					            }
+    					            } else {
+                                        draggable.appendTo(thisCopy);
+                                    }
     							}
     					);
     			 }
