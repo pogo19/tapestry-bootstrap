@@ -1,17 +1,19 @@
 (function($){
     /** Container of functions that may be invoked by the Tapestry.init() function. */
     $.extend(Tapestry.Initializer, {
-    	jqDroppable: function(specs){
-    		$( specs.selector ).droppable(specs.params);
-    		$( specs.selector  ).bind( "drop", function(event, ui) {
-    			 var contexte=$(ui.draggable).attr('id');
-    			 if ( specs.zoneSelector ) {
+        jqDroppable: function(specs){
+            var d = $(specs.selector);
+            d.droppable(specs.params);
+            d.data("drop-context", specs.context);
+            d.bind("drop", function(event, ui) {
+                var dropCtx = $(event.currentTarget).data("drop-context");
+                var dragCtx = $(ui.draggable).data("drag-context");
+                var url = specs.BaseURL + dropCtx + dragCtx;
+                if ( specs.zoneSelector ) {
 	    			 var element = $(specs.zoneSelector);
-	    			 var urlWithContexte =specs.BaseURL + "&drop=" + contexte + "&target=" + event.currentTarget.id;
-	    			 element.tapestryZone("update" , {url : urlWithContexte});
+	    			 element.tapestryZone("update" , {url : url});
     			 } else {
-    				 var urlWithContexte =specs.BaseURL + "&drop=" + contexte + "&target=" + event.currentTarget.id;
-    				 $.get(urlWithContexte).success(
+    				 $.get(url).success(
     							function(data) {
     								if (data.redirectURL) {
     					                // Check for complete URL.
