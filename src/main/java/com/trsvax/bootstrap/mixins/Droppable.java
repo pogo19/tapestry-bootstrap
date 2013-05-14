@@ -54,7 +54,7 @@ public class Droppable {
 		}
 		String link = resources.getContainerResources().createEventLink(event).toAbsoluteURI();
 		if ( context != null ) {
-				resources.getContainerResources().createEventLink(event,context).toAbsoluteURI();
+            link = resources.getContainerResources().createEventLink(event,context).toAbsoluteURI();
 		}
 		if ( params == null ) {
 			params = new JSONObject();
