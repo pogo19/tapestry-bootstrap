@@ -26,7 +26,11 @@
     					                }				                
     					                window.location.pathname = data.redirectURL;
     					            } else {
-                                        draggable.appendTo(thisCopy);
+                                        if (data.errors === undefined || data.errors.length === undefined || data.errors.length == 0) {
+                                            draggable.appendTo(thisCopy);
+                                        } else {
+                                            // TODO KK handle errors ?
+                                        }
                                     }
     							}
     					);
