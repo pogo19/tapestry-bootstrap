@@ -26,7 +26,7 @@
                                 }
                                 window.location.pathname = data.redirectURL;
                             } else {
-                                if (data.ok === undefined || data.errors.length === undefined || data.errors.length == 0) {
+                                if (data.ok === undefined) {
                                     draggable.appendTo(thisCopy);
                                 } else {
                                     // TODO KK handle errors ?
