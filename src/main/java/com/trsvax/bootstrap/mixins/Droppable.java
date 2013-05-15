@@ -33,6 +33,8 @@ public class Droppable {
 	String zoneSelector;
 	@Parameter(defaultPrefix="literal")
 	JSONObject params;
+	@Parameter
+	boolean disabled;
 
     @Inject
     TypeCoercer typeCoercer;
@@ -56,7 +58,10 @@ public class Droppable {
 	
 	@BeginRender
 	void beginRender() {
-		if ( event == null ) {
+        if (disabled) {
+            return;
+        }
+        if ( event == null ) {
 			event = "drop";
 		}
 		String link = resources.getContainerResources().createEventLink(event).toAbsoluteURI();
@@ -93,6 +98,9 @@ public class Droppable {
 
 	@AfterRender
 	public void afterRender(MarkupWriter writer) {
+        if (disabled) {
+            return;
+        }
 		String id = null;
 		if ( elementName == null ) {
 			elementName = resources.getElementName();
