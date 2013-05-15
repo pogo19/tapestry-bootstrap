@@ -26,10 +26,11 @@
                                 }
                                 window.location.pathname = data.redirectURL;
                             } else {
-                                if (data.errors === undefined || data.errors.length === undefined || data.errors.length == 0) {
+                                if (data.ok === undefined || data.errors.length === undefined || data.errors.length == 0) {
                                     draggable.appendTo(thisCopy);
                                 } else {
                                     // TODO KK handle errors ?
+                                    // data.errors === undefined || data.errors.length === undefined || data.errors.length == 0
                                 }
                             }
                         }
