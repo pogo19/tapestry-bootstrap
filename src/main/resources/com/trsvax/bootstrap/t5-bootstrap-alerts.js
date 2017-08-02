@@ -23,36 +23,38 @@
         
         function bootstrapAlerts(spec) {
             T5.sub(T5.events.ADD_ALERT, null, function(alertSpec) {
-                var $alerts = $(".t-alert-container").children();
-                
-                $alerts.filter("DIV.t-error").each(function(){
-                    makeBootstrapAlert($(this), "alert-error");
-                });
-                $alerts.filter("DIV.t-warn").each(function(){
-                    makeBootstrapAlert($(this), "alert");
-                });
-                $alerts.filter("DIV.t-info").each(function(){
-                    makeBootstrapAlert($(this), "alert-success");
-                });
-                $alerts.filter("DIV.t-success").each(function(){
-                    makeBootstrapAlert($(this), "alert-success");
-                });
-
-                var $controls = $(".t-alert-controls");
-                
-                if ($controls.length == 0) {
-                    //  Already moved
-                    return;
-                }
-                
-                $controls.removeClass();
-                $controls.addClass("t5-bootstrap-alert-controls");
-                
-                var $dismissAll = $controls.children("a").first();
-                $dismissAll.addClass("close t5-bootstrap-dismiss-all");
-                
-                var $parent = $controls.parent();
-                $controls.detach().prependTo($parent);
+            	setTimeout(function () {
+	                var $alerts = $(".t-alert-container").children();
+	                
+	                $alerts.filter("DIV.t-error").each(function(){
+	                    makeBootstrapAlert($(this), "alert-error");
+	                });
+	                $alerts.filter("DIV.t-warn").each(function(){
+	                    makeBootstrapAlert($(this), "alert");
+	                });
+	                $alerts.filter("DIV.t-info").each(function(){
+	                    makeBootstrapAlert($(this), "alert-success");
+	                });
+	                $alerts.filter("DIV.t-success").each(function(){
+	                    makeBootstrapAlert($(this), "alert-success");
+	                });
+	
+	                var $controls = $(".t-alert-controls");
+	                
+	                if ($controls.length == 0) {
+	                    //  Already moved
+	                    return;
+	                }
+	                
+	                $controls.removeClass();
+	                $controls.addClass("t5-bootstrap-alert-controls");
+	                
+	                var $dismissAll = $controls.children("a").first();
+	                $dismissAll.addClass("close t5-bootstrap-dismiss-all");
+	                
+	                var $parent = $controls.parent();
+	                $controls.detach().prependTo($parent);
+            	}, 0);
             });
         }
 
